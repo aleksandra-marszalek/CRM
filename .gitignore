@@ -118,5 +118,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Springboot
+.mvn/
+mvnw
+mvnw.cmd
 
 # End of https://www.gitignore.io/api/java,macos,intellij
