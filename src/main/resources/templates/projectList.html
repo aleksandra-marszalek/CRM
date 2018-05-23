@@ -72,7 +72,13 @@
         <td th:text="${project.description}"></td>
         <td th:text="${project.website}"></td>
         <td th:text="${project.identificator}"></td>
-        <td th:text="${project.users}"></td>
+        <td>
+            <ul th:each="user: ${project.users}">
+                <li>
+                 <p th:text="${user.login}"></p>
+                </li>
+            </ul>
+        </td>
         <td th:text="${project.active}"></td>
     </tr>
 </table>

@@ -18,6 +18,7 @@ import pl.coderslab.crm.service.StatusService;
 import pl.coderslab.crm.service.UserService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -64,6 +65,7 @@ public class adminController {
         if (result.hasErrors()) {
             return "addProject";
         }
+        project.setCreated(LocalDate.now());
         projectService.save(project);
         return "redirect:/admin/projectList";
     }
@@ -114,7 +116,6 @@ public class adminController {
         if (result.hasErrors()) {
             return "addUser";
         }
-
         userService.addUser(user);
         return "redirect:/admin/userList";
     }
@@ -144,5 +145,13 @@ public class adminController {
         }
         statusService.save(status);
         return "redirect:/admin/statusList";
+    }
+
+
+    ////////////// MODEL ///////////////
+
+    @ModelAttribute("users")
+    public List<User> users() {
+        return userService.allUsers();
     }
 }

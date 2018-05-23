@@ -10,27 +10,42 @@
 
 <body>
 
-<h1>Add status</h1>
+<h1>Add project</h1>
 <hr>
 <a th:href="@{/admin/}">Go back to admin panel</a>
 <hr>
-<form th:action="@{/admin/addStatus}" th:object="${status}" method="post">
-
-
+<form th:action="@{/admin/addProject}" th:object="${project}" method="post">
 
     <p> name: <input type="text" th:field="*{name}" /></p>
 
     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> This cannot be empty</p>
 
+    <p> description: <input type="text" th:field="*{description}" /></p>
+
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"> This cannot be empty</p>
+
+    <p> www: <input type="text" th:field="*{website}" /></p>
+
+    <p th:if="${#fields.hasErrors('website')}" th:errors="*{website}"> Here is place for error message</p>
+
+    <p>
+    Users:
+    <ul>
+
+        <li th:each="user : ${users}">
+
+            <input type="checkbox" th:field="*{users}" th:value="${user.id}" />
+            <label th:text="${user.login}"> Users: </label>
+
+
+        </li>
+
+    </ul>
+    </p>
+
     <p> active: <input type="checkbox" th:field="*{active}" /></p>
 
     <p th:if="${#fields.hasErrors('active')}" th:errors="*{active}"> Here is place for error message</p>
-
-
-    <p> sorted: <input type="number" th:field="*{sorted}" /></p>
-
-    <p th:if="${#fields.hasErrors('sorted')}" th:errors="*{sorted}"> Here is place for error message</p>
-
 
 
     <input type="hidden" th:field="*{id}" />

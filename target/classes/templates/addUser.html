@@ -18,20 +18,20 @@
 
 
 
-    <p> login: <input type="text" th:field="*{login}" /></p>
+    <p> Login: <input type="text" th:field="*{login}" /></p>
 
     <p th:if="${#fields.hasErrors('login')}" th:errors="*{login}"> Not valid login // login taken</p>
 
-    <p> firstName: <input type="text" th:field="*{firstName}" /></p>
+    <p> First name: <input type="text" th:field="*{firstName}" /></p>
 
     <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"> Here is place for error message</p>
 
 
-    <p> lastName: <input type="text" th:field="*{lastName}" /></p>
+    <p> Last name: <input type="text" th:field="*{lastName}" /></p>
 
     <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"> Here is place for error message</p>
 
-    <p> password: <input type="text" th:field="*{password}" /></p>
+    <p> Password: <input type="text" th:field="*{password}" /></p>
 
     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Here is place for error message</p>
 

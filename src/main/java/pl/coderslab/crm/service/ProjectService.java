@@ -14,7 +14,13 @@ public class ProjectService {
     @Autowired
     ProjectRepository projectRepository;
 
+    public String getId (String name) {
+        String identificator = name.replaceAll(" ", "-");
+        return identificator;
+    }
+
     public void save (Project project) {
+        project.setIdentificator(getId(project.getName()));
         projectRepository.save(project);
     }
 
