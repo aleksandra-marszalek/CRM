@@ -25,7 +25,7 @@ public class PriorityService {
         return priorityRepository.findPriorityById(id);
     }
 
-    public List<Priority> allPrioritys () {
+    public List<Priority> allPriorities () {
         return priorityRepository.findAll();
     }
 }

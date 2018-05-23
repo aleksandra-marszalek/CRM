@@ -1,10 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-
-
+<html xmlns:th="http://www.thymeleaf.org"> <head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> </head>
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Project List</title>
     <style>
         table.minimalistBlack {
@@ -48,29 +47,23 @@
 
 <body>
 
-<h1>Project list</h1>
+<h1>User list</h1>
 <hr>
 
 <table class="minimalistBlack">
 
     <tr>
-        <th>name</th>
-        <th>created</th>
-        <th>description</th>
-        <th>website</th>
-        <th>identificator</th>
-        <th>users</th>
-        <th>active</th>
+        <th>login</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>password</th>
     </tr>
 
-    <tr th:each="project: ${allProjects}">
-        <td th:text="${project.name}"></td>
-        <td th:text="${project.created}"></td>
-        <td th:text="${project.description}"></td>
-        <td th:text="${project.website}"></td>
-        <td th:text="${project.identificator}"></td>
-        <td th:text="${project.users}"></td>
-        <td th:text="${project.active}"></td>
+    <tr th:each="user: ${allUsers}">
+        <td th:text="${user.login}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.password}"></td>
     </tr>
 </table>
 

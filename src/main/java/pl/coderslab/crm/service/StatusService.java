@@ -26,7 +26,7 @@ public class StatusService {
         return statusRepository.findStatusById(id);
     }
 
-    public List<Status> allStatuss () {
+    public List<Status> allStatuses () {
         return statusRepository.findAll();
     }
 }
