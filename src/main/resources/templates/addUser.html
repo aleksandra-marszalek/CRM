@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Status</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+
+<body>
+
+<h1>Add status</h1>
+<hr>
+<a th:href="@{/admin/}">Go back to admin panel</a>
+<hr>
+<form th:action="@{/admin/addUser}" th:object="${user}" method="post">
+
+
+
+    <p> Login: <input type="text" th:field="*{login}" /></p>
+
+    <p th:if="${#fields.hasErrors('login')}" th:errors="*{login}"> Not valid login // login taken</p>
+
+    <p> First name: <input type="text" th:field="*{firstName}" /></p>
+
+    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"> Here is place for error message</p>
+
+
+    <p> Last name: <input type="text" th:field="*{lastName}" /></p>
+
+    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"> Here is place for error message</p>
+
+    <p> Password: <input type="text" th:field="*{password}" /></p>
+
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Here is place for error message</p>
+
+
+
+    <input type="hidden" th:field="*{id}" />
+
+    <p><input type="submit"	value="save" /></p>
+
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Status</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+
+<body>
+
+<h1>Add status</h1>
+<hr>
+<a th:href="@{/admin/}">Go back to admin panel</a>
+<hr>
+<form th:action="@{/admin/addStatus}" th:object="${status}" method="post">
+
+
+
+    <p> name: <input type="text" th:field="*{name}" /></p>
+
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> This cannot be empty</p>
+
+    <p> active: <input type="checkbox" th:field="*{active}" /></p>
+
+    <p th:if="${#fields.hasErrors('active')}" th:errors="*{active}"> Here is place for error message</p>
+
+
+    <p> sorted: <input type="number" th:field="*{sorted}" /></p>
+
+    <p th:if="${#fields.hasErrors('sorted')}" th:errors="*{sorted}"> Here is place for error message</p>
+
+
+
+    <input type="hidden" th:field="*{id}" />
+
+    <p><input type="submit"	value="save" /></p>
+
+</form>
+
+
+</body>
+</html>

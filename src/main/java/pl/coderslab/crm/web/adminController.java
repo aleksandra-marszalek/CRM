@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +17,7 @@ import pl.coderslab.crm.service.ProjectService;
 import pl.coderslab.crm.service.StatusService;
 import pl.coderslab.crm.service.UserService;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -46,12 +43,32 @@ public class adminController {
         return "adminPanel";
     }
 
+    /////////////// PROJECT ///////////////////
+
     @GetMapping("/projectList")
     public String projectList (Model model) {
         List<Project> allProjects = projectService.allProjects();
         model.addAttribute("allProjects", allProjects);
         return "projectList";
     }
+
+    @GetMapping("/addProject")
+    public String addProject(Model model) {
+        Project project = new Project();
+        model.addAttribute("project", project);
+        return "addProject";
+    }
+
+    @PostMapping("/addProject")
+    public String addProject(@Valid @ModelAttribute Project project, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addProject";
+        }
+        projectService.save(project);
+        return "redirect:/admin/projectList";
+    }
+
+    ////////////// PRIORITY //////////////////
 
     @GetMapping("/priorityList")
     public String priorityList (Model model) {
@@ -76,12 +93,35 @@ public class adminController {
         return "redirect:/admin/priorityList";
     }
 
+    /////////////////// USER //////////////////
+
     @GetMapping("/userList")
     public String userList (Model model) {
         List<User> users = userService.allUsers();
         model.addAttribute("allUsers", users);
         return "userList";
     }
+
+    @GetMapping("/addUser")
+    public String addUser(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "addUser";
+    }
+
+    @PostMapping("/addUser")
+    public String addUser(@Valid @ModelAttribute User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addUser";
+        }
+
+        userService.addUser(user);
+        return "redirect:/admin/userList";
+    }
+
+
+    /////////////// STATUS ///////////////////
+
 
     @GetMapping("/statusList")
     public String statusList (Model model) {

@@ -16,7 +16,7 @@ public class User {
     private Long id;
 
     @NotNull
-    @UniqueElements
+    @Column(unique = true)
     private String login;
 
     private String firstName;
