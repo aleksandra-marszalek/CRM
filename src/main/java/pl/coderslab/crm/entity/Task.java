@@ -2,6 +2,7 @@ package pl.coderslab.crm.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Task {
@@ -19,10 +20,13 @@ public class Task {
     @ManyToOne
     private Project project;
 
+    @ManyToOne
     private Priority priority;
 
+    @ManyToOne
     private Status status;
 
+    @ManyToOne
     private User user;
 
     public Task() {

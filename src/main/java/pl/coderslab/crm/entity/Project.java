@@ -27,7 +27,7 @@ public class Project {
 
     private String identificator;
 
-    @OneToMany()
+    @OneToMany
     private List<User> users;
 
     private boolean active;
