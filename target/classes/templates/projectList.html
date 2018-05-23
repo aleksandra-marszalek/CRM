@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"> <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> </head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
 <head>
 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Project List</title>
     <style>
         table.minimalistBlack {
@@ -49,6 +50,9 @@
 
 <h1>Project list</h1>
 <hr>
+<a th:href="@{/admin/}">Go back to admin panel</a>
+<hr>
+
 
 <table class="minimalistBlack">
 
