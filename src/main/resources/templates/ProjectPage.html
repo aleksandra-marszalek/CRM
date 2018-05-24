@@ -5,7 +5,7 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>All projects</title>
+    <title>Project page</title>
     <style>
         table.minimalistBlack {
             border: 3px solid #000000;
@@ -48,9 +48,9 @@
 
 <body>
 
-<h1>All projects</h1>
+<h1 th:text="|Project: ${project.name}|"></h1>
 <hr>
-<a th:href="@{/}">Go back to home</a>
+<a th:href="@{/project/allProjects/}">Go back to all projects</a>
 <hr>
 
 
@@ -59,21 +59,26 @@
     <tr>
         <th>name</th>
         <th>created</th>
+        <th>description</th>
+        <th>website</th>
         <th>identificator</th>
-        <th>actions</th>
+        <th>users</th>
     </tr>
 
-    <tr th:each="project: ${allProjects}">
+    <tr>
         <td th:text="${project.name}"></td>
         <td th:text="${project.created}"></td>
+        <td th:text="${project.description}"></td>
+        <td th:text="${project.website}"></td>
         <td th:text="${project.identificator}"></td>
         <td>
-            <a th:href="@{/project/{id}/taskList(id=${project.id})}">Tasks in project</a>
-            <a th:href="@{/project/{id}/showProject(id=${project.id})}">Details of project</a>
-            <a th:href="@{/project/{id}/editProject(id=${project.id})}">Edit project</a>
+            <ul th:each="user: ${project.users}">
+                <li>
+                    <p th:text="${user.login}"></p>
+                </li>
+            </ul>
         </td>
     </tr>
 </table>
 
 </body>
-</html>

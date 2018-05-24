@@ -68,9 +68,9 @@
         <td th:text="${project.created}"></td>
         <td th:text="${project.identificator}"></td>
         <td>
-            <a th:href="@{/project/${project.id}/taskList}">Tasks in project</a>
-            <a th:href="@{/project/${project.id}/showProject}">Details of project</a>
-            <a th:href="@{/project/${project.id}/editProject}">Edit project</a>
+            <a th:href="@{/project/{id}/taskList(id=${project.id})}">Tasks in project</a>
+            <a th:href="@{/project/{id}/showProject(id=${project.id})}">Details of project</a>
+            <a th:href="@{/project/{id}/editProject(id=${project.id})}">Edit project</a>
         </td>
     </tr>
 </table>

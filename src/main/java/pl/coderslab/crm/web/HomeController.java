@@ -15,20 +15,19 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
-    ProjectService projectService;
+//    @Autowired
+//    ProjectService projectService;
+//
+//    @Autowired
+//    PriorityService priorityService;
+//
 
-    @Autowired
-    PriorityService priorityService;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    StatusService statusService;
-
-    @Autowired
-    TaskService taskService;
+//
+//    @Autowired
+//    StatusService statusService;
+//
+//    @Autowired
+//    TaskService taskService;
 
 
     @GetMapping("/")
@@ -37,14 +36,8 @@ public class HomeController {
     }
 
 
-    ///////////// PROJECTS ///////////
 
-    @GetMapping("/project/allProjects")
-    public String allProjects (Model model) {
-        List<Project> allProjects = projectService.allProjects();
-        model.addAttribute("allProjects", allProjects);
-        return "allProjects";
-    }
+
 
 
 
@@ -54,9 +47,9 @@ public class HomeController {
 
 
     ////////////// MODEL ///////////////
-
-    @ModelAttribute("users")
-    public List<User> users() {
-        return userService.allUsers();
-    }
+//
+//    @ModelAttribute("users")
+//    public List<User> users() {
+//        return userService.allUsers();
+//    }
 }
