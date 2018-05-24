@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>All projects</title>
+    <style>
+        table.minimalistBlack {
+            border: 3px solid #000000;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        table.minimalistBlack td, table.minimalistBlack th {
+            border: 1px solid #000000;
+            padding: 5px 4px;
+        }
+        table.minimalistBlack tbody td {
+            font-size: 13px;
+        }
+        table.minimalistBlack thead {
+            background: #CFCFCF;
+            background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            border-bottom: 3px solid #000000;
+        }
+        table.minimalistBlack thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000000;
+            text-align: left;
+        }
+        table.minimalistBlack tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+            border-top: 3px solid #000000;
+        }
+        table.minimalistBlack tfoot td {
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>All projects</h1>
+<hr>
+<a th:href="@{/}">Go back to home</a>
+<hr>
+
+
+<table class="minimalistBlack">
+
+    <tr>
+        <th>name</th>
+        <th>created</th>
+        <th>identificator</th>
+        <th>actions</th>
+    </tr>
+
+    <tr th:each="project: ${allProjects}">
+        <td th:text="${project.name}"></td>
+        <td th:text="${project.created}"></td>
+        <td th:text="${project.identificator}"></td>
+        <td>
+            <a th:href="@{/project/${project.id}/taskList}">Tasks in project</a>
+            <a th:href="@{/project/${project.id}/showProject}">Details of project</a>
+            <a th:href="@{/project/${project.id}/editProject}">Edit project</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

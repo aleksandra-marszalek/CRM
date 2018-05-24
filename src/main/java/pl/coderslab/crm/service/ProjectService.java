@@ -16,6 +16,7 @@ public class ProjectService {
 
     public String getId (String name) {
         String identificator = name.replaceAll(" ", "-");
+        identificator = identificator.replaceAll("[zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*", "");
         return identificator;
     }
 

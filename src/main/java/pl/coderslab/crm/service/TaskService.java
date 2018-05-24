@@ -1,12 +1,14 @@
 package pl.coderslab.crm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.coderslab.crm.entity.Task;
 import pl.coderslab.crm.repository.TaskRepository;
 import pl.coderslab.crm.repository.TaskRepository;
 
 import java.util.List;
 
+@Service
 public class TaskService {
 
     @Autowired
