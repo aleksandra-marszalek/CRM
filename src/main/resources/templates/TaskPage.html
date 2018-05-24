@@ -5,7 +5,7 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>All tasks</title>
+    <title>Task page</title>
     <style>
         table.minimalistBlack {
             border: 3px solid #000000;
@@ -48,12 +48,11 @@
 
 <body>
 
-<h1 th:text="|All tasks in ${project.name}|"></h1>
+<h1 th:text="|Details of ${task.title}|"></h1>
 <hr>
-<a th:href="@{/project/allProjects}">Go back to all projects</a>
+<a th:href="@{/project/{id}/allTasks(id=${task.project.id})}">Go back to all tasks</a>
 <hr>
-<a th:href="@{/task/addTask}">Add new task</a>
-<hr>
+
 
 <table class="minimalistBlack">
 
@@ -61,17 +60,18 @@
         <th>title</th>
         <th>created</th>
         <th>user</th>
-        <th>actions</th>
+        <th>description</th>
+        <th>status</th>
+        <th>priority</th>
     </tr>
 
-    <tr th:each="task: ${allTasks}">
+    <tr>
         <td th:text="${task.title}"></td>
         <td th:text="${task.created}"></td>
         <td th:text="${task.user}"></td>
-        <td>
-            <a th:href="@{/task/{id}/showTask(id=${task.id})}">Details of task</a>
-            <a th:href="@{/task/{id}/editTask(id=${task.id})}">Edit task</a>
-        </td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.status.name}"></td>
+        <td th:text="${task.priority.name}"></td>
     </tr>
 </table>
 
