@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,6 +31,11 @@ public class User {
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Project> projects = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public User() {
     }
@@ -80,5 +86,13 @@ public class User {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -6,4 +6,6 @@ import pl.coderslab.crm.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findUserById (Long id);
+
+    User findUserByLogin (String login);
 }
