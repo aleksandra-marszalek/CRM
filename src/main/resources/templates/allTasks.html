@@ -52,7 +52,7 @@
 <hr>
 <a th:href="@{/project/allProjects}">Go back to all projects</a>
 <hr>
-<a th:href="@{/task/addTask}">Add new task</a>
+<a th:href="@{/project/{id}/addTask(id=${project.id})}">Add new task</a>
 <hr>
 
 <table class="minimalistBlack">
@@ -67,7 +67,7 @@
     <tr th:each="task: ${allTasks}">
         <td th:text="${task.title}"></td>
         <td th:text="${task.created}"></td>
-        <td th:text="${task.user}"></td>
+        <td th:text="${task.user.login}"></td>
         <td>
             <a th:href="@{/task/{id}/showTask(id=${task.id})}">Details of task</a>
             <a th:href="@{/task/{id}/editTask(id=${task.id})}">Edit task</a>

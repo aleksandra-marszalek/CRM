@@ -29,4 +29,8 @@ public class StatusService {
     public List<Status> allStatuses () {
         return statusRepository.findAll();
     }
+
+    public List<Status> findAllActive () {
+        return statusRepository.findAllByActiveTrue();
+    }
 }

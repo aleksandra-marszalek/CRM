@@ -3,17 +3,12 @@ package pl.coderslab.crm.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.crm.entity.Project;
-import pl.coderslab.crm.entity.Task;
-import pl.coderslab.crm.entity.User;
-import pl.coderslab.crm.service.ProjectService;
-import pl.coderslab.crm.service.TaskService;
-import pl.coderslab.crm.service.UserService;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.crm.entity.*;
+import pl.coderslab.crm.service.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,6 +23,12 @@ public class projectController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    StatusService statusService;
+
+    @Autowired
+    PriorityService priorityService;
 
     @GetMapping("/allProjects")
     public String allProjects (Model model) {
@@ -52,6 +53,28 @@ public class projectController {
         return "allTasks";
     }
 
+    @GetMapping("/{id}/addTask")
+    public String addTask (Model model, @PathVariable Long id) {
+        Task task = new Task();
+        Project project = projectService.findById(id);
+        List<User> currentUsers = project.getUsers();
+        model.addAttribute("id", id);
+        model.addAttribute("task", task);
+        model.addAttribute("currentUsers", currentUsers);
+        return "addTask";
+    }
+
+    @PostMapping("/{id}/addTask")
+    public String addTask (@Valid @ModelAttribute Task task, BindingResult result, @PathVariable Long id) {
+        if (result.hasErrors()) {
+            return "addTask";
+        }
+        Project project = projectService.findById(id);
+        task.setProject(project);
+        taskService.save(task);
+        return "redirect:/project/"+id+"/taskList";
+    }
+
 
 
 
@@ -61,5 +84,15 @@ public class projectController {
     @ModelAttribute("users")
     public List<User> users() {
         return userService.allUsers();
+    }
+
+    @ModelAttribute("statuses")
+    public List<Status> statuses() {
+        return statusService.findAllActive();
+    }
+
+    @ModelAttribute("priorities")
+    public List<Priority> priorities() {
+        return priorityService.findAllActive();
     }
 }

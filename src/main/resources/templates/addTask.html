@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add task</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+
+<body>
+
+<h1>Add task to the project</h1>
+<hr>
+<a th:href="@{/project/{id}/allTasks(id=${id})}">Go back to all tasks</a>
+<hr>
+<form th:action="@{/project/{id}/addTask(id=${id})}" th:object="${task}" method="post">
+
+    <p> name: <input type="text" th:field="*{title}" /></p>
+
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> This cannot be empty</p>
+
+    <p> description: <input type="text" th:field="*{description}" /></p>
+
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"> This cannot be empty</p>
+
+    <p>
+        User:
+        <select th:field="*{user}" th:remove="all-but-first">
+
+            <option th:each="user : ${currentUsers}"
+
+                    th:value="${user.id}" th:text="${user.login}"> User :</option>
+
+        </select>
+    </p>
+
+    <p>
+        Status:
+        <select th:field="*{status}" th:remove="all-but-first">
+
+            <option th:each=" status: ${statuses}"
+
+                    th:value="${status.id}" th:text="${status.name}"> Status :</option>
+
+        </select>
+    </p>
+
+    <p>
+        Priority:
+        <select th:field="*{priority}" th:remove="all-but-first">
+
+            <option th:each="priority : ${priorities}"
+
+                    th:value="${priority.id}" th:text="${priority.name}"> Priority :</option>
+
+        </select>
+    </p>
+
+
+
+    <input type="hidden" th:field="*{id}" />
+
+    <p><input type="submit"	value="save" /></p>
+
+</form>
+
+
+</body>
+</html>

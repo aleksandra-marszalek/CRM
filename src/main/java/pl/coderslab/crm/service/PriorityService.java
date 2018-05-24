@@ -28,4 +28,8 @@ public class PriorityService {
     public List<Priority> allPriorities () {
         return priorityRepository.findAll();
     }
+
+    public List<Priority> findAllActive () {
+        return priorityRepository.findAllByActiveTrue();
+    }
 }

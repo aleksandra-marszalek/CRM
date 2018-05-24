@@ -7,6 +7,7 @@ import pl.coderslab.crm.entity.Task;
 import pl.coderslab.crm.repository.TaskRepository;
 import pl.coderslab.crm.repository.TaskRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class TaskService {
     TaskRepository taskRepository;
 
     public void save (Task task) {
+        task.setCreated(LocalDate.now());
         taskRepository.save(task);
     }
 
