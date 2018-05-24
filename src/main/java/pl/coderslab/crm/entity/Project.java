@@ -5,9 +5,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "projects")
 public class Project {
 
     @Id
@@ -27,8 +29,8 @@ public class Project {
 
     private String identificator;
 
-    @OneToMany
-    private List<User> users;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<User> users = new ArrayList<>();
 
     private boolean active;
 

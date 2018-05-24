@@ -6,9 +6,11 @@ import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -25,6 +27,9 @@ public class User {
 
     @NotNull
     private String password;
+
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private List<Project> projects = new ArrayList<>();
 
     public User() {
     }
@@ -67,5 +72,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
