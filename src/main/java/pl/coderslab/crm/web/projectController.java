@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.crm.entity.Project;
+import pl.coderslab.crm.entity.Task;
 import pl.coderslab.crm.entity.User;
 import pl.coderslab.crm.service.ProjectService;
+import pl.coderslab.crm.service.TaskService;
 import pl.coderslab.crm.service.UserService;
 
 import java.util.List;
@@ -20,6 +22,9 @@ public class projectController {
 
     @Autowired
     ProjectService projectService;
+
+    @Autowired
+    TaskService taskService;
 
     @Autowired
     UserService userService;
@@ -36,6 +41,15 @@ public class projectController {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
         return "ProjectPage";
+    }
+
+    @GetMapping("/{id}/taskList")
+    public String showTasks (Model model, @PathVariable Long id) {
+        Project project = projectService.findById(id);
+        model.addAttribute("project", project);
+        List<Task> projectTasks = taskService.findAllByProjectId(id);
+        model.addAttribute("allTasks", projectTasks);
+        return "allTasks";
     }
 
 

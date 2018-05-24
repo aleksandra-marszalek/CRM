@@ -2,6 +2,7 @@ package pl.coderslab.crm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.crm.entity.Project;
 import pl.coderslab.crm.entity.Task;
 import pl.coderslab.crm.repository.TaskRepository;
 import pl.coderslab.crm.repository.TaskRepository;
@@ -28,5 +29,9 @@ public class TaskService {
 
     public List<Task> allTasks () {
         return taskRepository.findAll();
+    }
+
+    public List<Task> findAllByProjectId (Long projectId) {
+        return taskRepository.findAllByProjectId(projectId);
     }
 }
