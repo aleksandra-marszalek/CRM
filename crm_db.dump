@@ -1,0 +1,289 @@
+-- MySQL dump 10.13  Distrib 5.7.21, for osx10.12 (x86_64)
+--
+-- Host: localhost    Database: crm_db
+-- ------------------------------------------------------
+-- Server version	5.7.21
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (1);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `priority`
+--
+
+DROP TABLE IF EXISTS `priority`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `priority` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `active` bit(1) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `priority`
+--
+
+LOCK TABLES `priority` WRITE;
+/*!40000 ALTER TABLE `priority` DISABLE KEYS */;
+INSERT INTO `priority` VALUES (1,'\0','priority1'),(2,'','priority2'),(3,'','priority3');
+/*!40000 ALTER TABLE `priority` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `projects`
+--
+
+DROP TABLE IF EXISTS `projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projects` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `active` bit(1) NOT NULL,
+  `created` date DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `identificator` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `projects`
+--
+
+LOCK TABLES `projects` WRITE;
+/*!40000 ALTER TABLE `projects` DISABLE KEYS */;
+INSERT INTO `projects` VALUES (1,'','2018-05-24','project 1','project-one','project one','www.new-project.pl'),(2,'','2018-05-24','desc of project 2','second-project','second project','www.new.pl'),(3,'','2018-05-24','to jest tylko mój projekt','Wspaniay-projekt-anety','Wspaniały projekt żanety','www.zaneta.pl');
+/*!40000 ALTER TABLE `projects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `projects_users`
+--
+
+DROP TABLE IF EXISTS `projects_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projects_users` (
+  `projects_id` bigint(20) NOT NULL,
+  `users_id` bigint(20) NOT NULL,
+  KEY `FK84rxl8nqh56hi1e701b7fcsdy` (`users_id`),
+  KEY `FK81uegvc6bmldky5kqn52ddyio` (`projects_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `projects_users`
+--
+
+LOCK TABLES `projects_users` WRITE;
+/*!40000 ALTER TABLE `projects_users` DISABLE KEYS */;
+INSERT INTO `projects_users` VALUES (1,1),(2,1),(2,2),(3,3);
+/*!40000 ALTER TABLE `projects_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `role_id` int(11) NOT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `status` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `active` bit(1) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `sorted` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status`
+--
+
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES (1,'','status1',1),(2,'','status2',2);
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `task`
+--
+
+DROP TABLE IF EXISTS `task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `task` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created` date DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `priority_id` bigint(20) DEFAULT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
+  `status_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK23pwolpebddlvnpucweas18g0` (`priority_id`),
+  KEY `FK59mygkh6yxl8yj6j8ocg1k73a` (`project_id`),
+  KEY `FK9amdidv53i0hvjvnxkrup18t4` (`status_id`),
+  KEY `FKbhwpp8tr117vvbxhf5sbkdkc9` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `task`
+--
+
+LOCK TABLES `task` WRITE;
+/*!40000 ALTER TABLE `task` DISABLE KEYS */;
+INSERT INTO `task` VALUES (1,'2018-05-24','very nice task','task1',2,1,1,1),(2,'2018-05-24','very important task for Anna','task1 in project2',2,2,2,2);
+/*!40000 ALTER TABLE `task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_role`
+--
+
+DROP TABLE IF EXISTS `user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_role` (
+  `user_id` bigint(20) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_role`
+--
+
+LOCK TABLES `user_role` WRITE;
+/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+INSERT INTO `user_role` VALUES (1,1),(2,2);
+/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_ow0gan20590jrb00upg3va2fn` (`login`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Jan','Kowalski','jan.kowalski','$2a$10$WARXPDpQOT9N3pj7sOotWOGncFOiF67rloQL5km1FZlcBnkhseFHC'),(2,'Anna','Nowak','Anna.Nowak','$2a$10$x7sB/cGytECR2sadCgE2yue.P.KnrpzctULAKGTvryZlc8Iuq/m1i'),(3,'Żaneta','Michalak','zaneta-michalak','$2a$10$1ky8hgp5sQTf492C7LYtreRAEKLCAjkCo2pmnmyzafvPzx.B5fbDa');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_projects`
+--
+
+DROP TABLE IF EXISTS `users_projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_projects` (
+  `users_id` bigint(20) NOT NULL,
+  `projects_id` bigint(20) NOT NULL,
+  KEY `FK1wq47u13qkt3icnwbuhw4sei3` (`projects_id`),
+  KEY `FKhcr3t491sjt9yk1kmckf6vjo2` (`users_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_projects`
+--
+
+LOCK TABLES `users_projects` WRITE;
+/*!40000 ALTER TABLE `users_projects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users_projects` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-05-24 22:17:26
